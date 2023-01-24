@@ -70,24 +70,69 @@ class TerminalScribe:
         # Sleep for a little bit to create the animation
         time.sleep(self.framerate)
 
+    def drawSquare(self, size):
+        """The function takes a size and draws a square of the given size.        
+        """
+        i = 0 # tracking variable
+        # size variables for each side
+        right_moves = 0
+        down_moves = 0
+        left_moves = 0
+        up_moves = 0
+
+        while i <= size: # while the tracking var is less than the size, execute this loop
+            if right_moves <= size: # if the size of the side is less than or equal to the size
+                scribe.right() # draw character to the given direction
+                right_moves += 1 # increment the size of the side
+                i += 1 # increment the tracking variable
+                if right_moves == size: # once the size of the side equals the specified size
+                    break # break out of the loop
+        i = 0 # reset the tracker
+        # draw the next side only once the previous side has reached the specified size
+        while i <= size and right_moves == size: # same logic as before
+            if down_moves <= size:
+                scribe.down()
+                down_moves += 1
+                i += 1
+                if down_moves == size:
+                    break
+        i = 0
+        # repeat
+        while i <= size and down_moves == size:
+            if left_moves <= size:
+                scribe.left()
+                left_moves += 1
+                i += 1
+                if left_moves == size:
+                    break
+        i = 0
+        # one last time
+        while i <= size and left_moves == size:
+            if up_moves <= size:
+                scribe.up()
+                up_moves += 1
+                i += 1
+                if up_moves == size:
+                    break
+
 # Create a new Canvas instance that is 30 units wide by 30 units tall 
 canvas = Canvas(30, 30)
 
 # Create a new scribe and give it the Canvas object
 scribe = TerminalScribe(canvas)
 
+# Draw a square with a specified size
+scribe.drawSquare(7)
 # Draw a small square
-scribe.right()
-scribe.right()
-scribe.right()
-scribe.down()
-scribe.down()
-scribe.down()
-scribe.left()
-scribe.left()
-scribe.left()
-scribe.up()
-scribe.up()
-scribe.up()
-
-
+# scribe.right()
+# scribe.right()
+# scribe.right()
+# scribe.down()
+# scribe.down()
+# scribe.down()
+# scribe.left()
+# scribe.left()
+# scribe.left()
+# scribe.up()
+# scribe.up()
+# scribe.up()
