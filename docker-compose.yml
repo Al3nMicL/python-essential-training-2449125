@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  web:
+    image: continuumio/miniconda3
+    build: .
+    ports:
+      - "8888:8888"
